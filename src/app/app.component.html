@@ -1,0 +1,61 @@
+<div style="height: 100vh;">
+  <div class="shadow w-20 p-5 position-absolute top-50 start-50 translate-middle">
+    <form #registerForm="ngForm" (ngSubmit)="register(registerForm)">
+      <h4 class="display-6 text-center py-2">CUSTOMER DATABASE</h4>
+
+      <div>
+        <label for="name">Name*</label>
+        <input id="name" required [(ngModel)]="customerToUpdate.name" name="name" type="text" class="form-control" placeholder="Enter customer name">
+        <div *ngIf="registerForm.controls['name']?.invalid && registerForm.controls['name']?.touched">
+          <small class="text-danger">Required</small>
+        </div>
+      </div>
+      
+      <div>
+        <label for="email">Email*</label>
+        <input id="email" required [(ngModel)]="customerToUpdate.email" name="email" type="email" class="form-control" placeholder="Enter email">
+        <div *ngIf="registerForm.controls['email']?.invalid && registerForm.controls['email']?.touched">
+          <small class="text-danger">Required</small>
+        </div>
+      </div>
+      
+      <div>
+        <label for="phoneNumber">Phone No.*</label>
+        <input id="phoneNumber" required [(ngModel)]="customerToUpdate.phoneNumber" name="phoneNumber" type="text" class="form-control" placeholder="Enter phone number">
+        <div *ngIf="registerForm.controls['phoneNumber']?.invalid && registerForm.controls['phoneNumber']?.touched">
+          <small class="text-danger">Required</small>
+        </div>
+      </div>
+      
+<br>
+      <div class="form-group text-center">
+        <input class="btn btn-primary" type="submit" value="Submit">
+      </div>
+    </form>
+  </div>
+</div>
+
+<div class="mt-5">
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Phone No.</th>
+        <th>Edit</th>
+        <th>Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let customer of customers">
+        <td>{{ customer.id }}</td>
+        <td>{{ customer.name }}</td>
+        <td>{{ customer.email }}</td>
+        <td>{{ customer.phoneNumber }}</td>
+        <td><button type="button" class="btn btn-primary" (click)="edit(customer)">Edit</button></td>
+        <td><button type="button" class="btn btn-danger" (click)="deleteCustomer(customer)">Delete</button></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
